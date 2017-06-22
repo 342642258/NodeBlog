@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>旅游博客</title>
+    <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/lib/css/bootstrap-social.css">
+    <link rel="stylesheet" href="/lib/css/magnific-popup.css">
+    <link rel="stylesheet" href="/lib/css/zong.css">
+    <link rel="stylesheet" href="/lib/css/css2.css">
+    <script src="/js/move.js"></script>
+    <script src="/js/discussjs.js"></script>
+    <script src="/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="/js/edit.js" type="text/javascript"></script>
+    <link href="/lib/css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body id="top" class="home">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="tm-navbar-container">
+            <div class="containe">
+
+                <!-- navbar   -->
+                <nav class="navbar navbar-full navbar-fixed-top">
+
+
+                    <div class="nav1" id="tmNavbar">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item img1">
+                                <img src="images/logo3.png" width='220px' height='77px'>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#top">首页</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#tm-section-2">博文</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#tm-section-3">相册</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#tm-section-4">留言</a>
+                            </li>
+                            <li class="nav-item">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#tm-section-5">分享</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link external" href="articles/myself">关于我</a>
+                            </li>
+                            <%
+                            if(user){
+                            %>
+                            <li class="nav-item">
+                                <span class="tx"><img class="tx" src="images/tx.png"
+                                                      onclick="javascript:window.location.href=''"></span>
+                            </li>
+
+
+                            <div class="dropdown">
+                                <li class="dropbtn">.</li>
+                                <div class="dropdown-content">
+                                    <a href="#" onclick="javascript:window.location.href='/articles/add'">发表文章</a>
+                                    <a href="#" onclick="javascript:window.location.href='/articles/myself'">个人资料</a>
+                                    <a href="/users/logout"
+                                       onclick="javascript:window.location.href='/users/logout'">登出</a>
+                                </div>
+                            </div>
+                            <%
+                            }else{
+                            %>
+                            <li class="nav-item">
+                                <a class="dl" onclick="javascript:window.location.href='/users/login'"><span class="glyphicon glyphicon-log-in"> 登录</span></a>
+                            </li>
+                            <%
+                            }
+                            %>
+
+
+                        </ul>
+
+                    </div>
+
+                </nav>
+
+            </div>
+
+        </div>
+
+        <!--全屏图-->
+        <div class="row">
+            <div class="tm-intro">
+                <section id="tm-section-1">
+                    <div class="tm-container text-xs-center tm-section-1-inner">
+                        <%
+                        if(success){
+                        %>
+                        <div><%=success%></div>
+                        <%
+                        }
+                        %>
+                        <%
+                        if(error){
+                        %>
+                        <div><%=error%></div>
+                        <%
+                        }
+                        %>
+                        <h1 class="tm-site-name">HELLO</h1>
+                        <p class="tm-intro-text">welcome to my bolg</p>
+
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+
+        <!--博文-->
+
+        <div class="row gray-bg">
+            <div id="tm-section-2" class="tm-section">
+                <div class="tm-container tm-container-wide">
+                    <%
+                    for(var i=articles.length-1;i >=0
+                    ;i--){
+                    var article = articles[i];
+                    %>
+                    <% if (i%2==0){
+                    %>
+                    <div class="tm-news-item">
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-news-item-img-container">
+                            <a href="/articles/detail/<%=article._id%>">
+                                <img src="<%=article.img%>" alt="Image" class="img-fluid tm-news-item-img" style="width: 100%;height: 300px;">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-news-container">
+                            <h2 class="tm-news-title dark-gray-text"><a href="/articles/detail/<%=article._id%>" style="text-decoration: none"><%=article.title%></a></h2>
+                            <p class="tm-news-text"><%-article.content%></p>
+                            <div class="yd"><p class="yd">阅读（<%= article.pv %>）<a href="/articles/detail/<%=article._id%>">评论</a>(<%= article.comments.length%>)   &nbsp;   &nbsp;</p>
+
+
+
+
+                                <!--点赞-->
+                                <div class="praise">
+                                    <span id="praise"><img src="images/zan.png" id="praise-img"/></span>
+                                    <span id="praise-txt">0</span>
+                                    <span id="add-num"><em>+1</em></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%
+                    }else{
+                    %>
+                    <div class="tm-news-item">
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6  flex-order-2 tm-news-item-img-container">
+                            <a href="/articles/detail/<%=article._id%>">
+                                <img src="<%=article.img%>" alt="Image" class="img-fluid tm-news-item-img" style="width: 650px;height: 300px">
+                            </a>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-news-container flex-order-1">
+                            <h2 class="tm-news-title dark-gray-text"><a href="/articles/detail/<%=article._id%>" style="text-decoration: none"><%=article.title%></a></h2>
+                            <p class="tm-news-text"><%-article.content%></p>
+                            <div class="yd"><p class="yd">阅读（<%= article.pv %>）<a href="/articles/detail/<%=article._id%>">评论</a>(<%= article.comments.length%>)   &nbsp;   &nbsp;</p>
+
+
+
+
+                                <!--点赞-->
+                                <div class="praise">
+                                    <span id="praise"><img src="images/zan.png" id="praise-img"/></span>
+                                    <span id="praise-txt">0</span>
+                                    <span id="add-num"><em>+1</em></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%
+                    }
+                    %>
+                    <%
+                    }
+                    %>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--相册-->
+        <div class="row">
+
+
+            <section id="tm-section-3" class="tm-section">
+                <div class="tm-container text-xs-center">
+
+                    <h2 class="blue-text tm-title"> ——— 相 册 ———</h2>
+                    <p class="margin-b-5">世界这么大</p>
+                    <p>我带你去看看</p>
+
+                    <div class="tm-img-grid">
+                        <!--1-->
+                        <%
+                        for(var i=articles.length-1;i >=0
+                        ;i--){
+                        var article = articles[i];
+                        %>
+                        <div class="tm-gallery-img-container">
+                            <a href="<%=article.img%>" class="tm-gallery-img-link" >
+                                <img src="<%=article.img%>" alt="Image" class="img-fluid tm-gallery-img" style="width: 300px;height: 200px">
+                                <!-- 300x200 -->
+                            </a>
+                        </div>
+                        <%
+                        }
+                        %>
+                        <div class="tm-gallery-img-container">
+                            <a href="images/tm-450x300-01.jpg" class="tm-gallery-img-link">
+                                <img src="images/tm-450x300-01.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                                <!-- 300x200 -->
+                            </a>
+                        </div>
+                        <!--2-->
+                        <div class="tm-gallery-img-container">
+                            <a href="images/tm17.jpg" class="tm-gallery-img-link">
+                                <img src="images/tm17.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                            </a>
+                        </div>
+                        <!--3-->
+                        <div class="tm-gallery-img-container">
+                            <a href="images/tm18.jpg" class="tm-gallery-img-link">
+                                <img src="images/tm18.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                            </a>
+                        </div>
+                        <!--4-->
+                        <div class="tm-gallery-img-container">
+                            <a href="images/tm09.jpg" class="tm-gallery-img-link">
+                                <img src="images/tm09.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                            </a>
+                        </div>
+                        <!--5-->
+                        <div class="tm-gallery-img-container">
+                            <a href="images/tm03.jpg" class="tm-gallery-img-link">
+                                <img src="images/tm03.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                            </a>
+                        </div>
+                        <!--6-->
+                        <div class="tm-gallery-img-container">
+                            <a href="images/tm16.jpg" class="tm-gallery-img-link">
+                                <img src="images/tm16.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                            </a>
+                        </div>
+                        <!--7-->
+                        <div class="tm-gallery-img-container">
+                            <a href="images/tm10.jpg" class="tm-gallery-img-link">
+                                <img src="images/tm10.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                            </a>
+                        </div>
+                        <!--8-->
+                        <div class="tm-gallery-img-container">
+                            <a href="images/tm04.jpg" class="tm-gallery-img-link">
+                                <img src="images/tm04.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                            </a>
+                        </div>
+                        <!--9-->
+                        <div class="tm-gallery-img-container">
+                            <a href="images/tm14.jpg" class="tm-gallery-img-link">
+                                <img src="images/tm14.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                            </a>
+                        </div>
+                        <!--10-->
+                        <div class="tm-gallery-img-container">
+                            <a href="images/tm11.jpg" class="tm-gallery-img-link">
+                                <img src="images/tm11.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                            </a>
+
+                        </div>
+                        <!--11-->
+                        <div class="tm-gallery-img-container">
+                            <a href="images/tm06.jpg" class="tm-gallery-img-link">
+                                <img src="images/tm06.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                            </a>
+                        </div>
+                        <!--12-->
+                        <div class="tm-gallery-img-container">
+                            <a href="images/tm12.jpg" class="tm-gallery-img-link">
+                                <img src="images/tm12.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!--显示更多相片-->
+
+                <div id="box" class="tm-container text-xs-right">
+                    <div class="tm-gallery-img-container">
+                        <a href="images/tm02.jpg" class="tm-gallery-img-link">
+                            <img src="images/tm02.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                        </a>
+
+                    </div>
+
+                    <div class="tm-gallery-img-container">
+                        <a href="images/tm05.jpg" class="tm-gallery-img-link">
+                            <img src="images/tm05.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                        </a>
+                    </div>
+                    <div class="tm-gallery-img-container">
+                        <a href="images/tm19.jpg" class="tm-gallery-img-link">
+                            <img src="images/tm19.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                        </a>
+                    </div>
+                    <div class="tm-gallery-img-container">
+                        <a href="images/tm08.jpg" class="tm-gallery-img-link">
+                            <img src="images/tm08.jpg" alt="Image" class="img-fluid tm-gallery-img">
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 留言 -->
+            <section id="tm-section-4" class="tm-section">
+                <div class="tm-container text-xs-center">
+                    <h2 class="blue-text tm-title"> —— 留 言 —— </h2>
+                    <div id="wrap">
+                        <div id="content_view">
+                            <ul>
+                                <li id="xs1">
+                                    昵称：<input type="text" id="userName"/>
+                                </li>
+                                <li id="xs1">
+                                    留言：<textarea name="" id="content" cols="30" rows="10"></textarea>
+                                </li>
+                                <li>
+                                    <input type="button" value="提交" id="submit"/>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="comment_list">
+                            <h2><p id="xs" class="xs">全部留言</p></h2>
+                            <ul id="comment_ul">
+
+                            </ul>
+                        </div>
+
+                    </div>
+            </section>
+
+        </div> <!-- row -->
+
+
+    </div>
+</div>
+<footer>
+    <div id="tm-section-5" class="container row-footer">
+        <div class="row">
+            <div class="col-xs-5 col-xs-offset-1 col-sm-2 col-sm-offset-1"><!-- 小尺寸时候，空1格出来 大尺寸时候，也是空一个出来-->
+                <h5>Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#top" class="active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                        首页</a></li>
+                    <li><a href="#tm-section-2"><span class="glyphicon glyphicon-exclamation-sign"
+                                                      aria-hidden="true"></span> 博文</a></li>
+                    <li><a href="#tm-section-3"> <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        相册</a></li>
+                    <li><a><span class="fa fa-envelope-o"></span> 分享</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-sm-5">
+
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <div style="padding: 40px 10px;">
+                    <a class="btn btn-social-icon btn-google"
+                       href="http://service.weibo.com/share/share.php?url=file%3A%2F%2F%2FC%3A%2FUsers%2Fchuqi%2FDesktop%2Fhomework%2Fshare.html%230-tsina-1-80072-397232819ff9a47a7b7e80a40613cfe1&title=%E5%88%86%E4%BA%AB%E5%88%B0%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A&appkey=1343713053&searchPic=true#_loginLayer_1494253995251"><img
+                            src="images/wb.png"> </a>
+                    <a class="btn btn-social-icon btn-facebook"
+                       href="http://connect.qq.com/widget/shareqq/index.html?url=file%3A%2F%2F%2FC%3A%2FUsers%2Fchuqi%2FDesktop%2Fhomework%2Fshare.html%230-sqq-1-54712-9737f6f9e09dfaf5d3fd14d775bfee85&title=%E5%88%86%E4%BA%AB%E5%88%B0%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A&desc=&summary=&site=baidu"><img
+                            src="images/wx.png"></a>
+                    <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i
+                            class="fa fa-linkedin"></i> </a>
+                    <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter"></i></a>
+                    <a class="btn btn-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube"></i></a>
+                    <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o"></i></a>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <p style="padding:10px;"></p>
+                <p align=center>© TEAM10 &copy; 2017 nodejs homework</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+</div>
+<!--index.JS-->
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/tether.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.singlePageNav.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        var mobileTopOffset = 54;
+        var desktopTopOffset = 80;
+        var topOffset = desktopTopOffset;
+
+        if ($(window).width() <= 767) {
+            topOffset = mobileTopOffset;
+        }
+
+
+        $('#tmNavbar').singlePageNav({
+            'currentClass': "active",
+            offset: topOffset,
+            'filter': ':not(.external)'
+        });
+
+
+        $(window).resize(function () {
+            if ($(window).width() <= 767) {
+                topOffset = mobileTopOffset;
+            }
+            else {
+                topOffset = desktopTopOffset;
+            }
+
+            $('#tmNavbar').singlePageNav({
+                'currentClass': "active",
+                offset: topOffset,
+                'filter': ':not(.external)'
+            });
+        });
+
+
+        $('#tmNavbar a').click(function () {
+            $('#tmNavbar').collapse('hide');
+        });
+
+
+        var target = $("#tm-section-2").offset().top - topOffset;
+
+        if ($(window).scrollTop() >= target) {
+            $(".tm-navbar-container").addClass("bg-inverse");
+        }
+        else {
+            $(".tm-navbar-container").removeClass("bg-inverse");
+        }
+
+        $(window).scroll(function () {
+
+            if ($(this).scrollTop() >= target) {
+                $(".tm-navbar-container").addClass("bg-inverse");
+            }
+            else {
+                $(".tm-navbar-container").removeClass("bg-inverse");
+            }
+        });
+
+        $('a[href*="#"]:not([href="#"])').click(function () {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+                && location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+
+                if (target.length) {
+
+                    $('html, body').animate({
+                        scrollTop: target.offset().top - topOffset
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+
+
+        $('.tm-img-grid').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            gallery: {enabled: true}
+        });
+
+    });
+</script>
+
+
+<script type="text/javascript">
+
+
+    <!--index显示全部照片-->
+
+    function show() {
+        var box = document.getElementById("box");
+        var text = box.innerHTML;
+        var newBox = document.createElement("div");
+        var btn = document.createElement("a");
+        newBox.innerHTML = text.substring(0, 200);
+        btn.innerHTML = text.length > 200 ? "..more" : "";
+        btn.href = "###";
+        btn.onclick = function () {
+            if (btn.innerHTML == "..more") {
+                btn.innerHTML = "..retract";
+                newBox.innerHTML = text;
+            }
+            else {
+                btn.innerHTML = "..more";
+                newBox.innerHTML = text.substring(0, 200);
+            }
+        }
+        box.innerHTML = "";
+        box.appendChild(newBox);
+        box.appendChild(btn);
+    }
+    show();
+
+
+    <!--留言.js-->
+
+    var Tween = {
+        Linear: function (t, b, c, d) {
+            return c * t / d + b;
+        },
+        Quad: {
+            easeIn: function (t, b, c, d) {
+                return c * (t /= d) * t + b;
+            },
+            easeOut: function (t, b, c, d) {
+                return -c * (t /= d) * (t - 2) + b;
+            },
+            easeInOut: function (t, b, c, d) {
+                if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+                return -c / 2 * ((--t) * (t - 2) - 1) + b;
+            }
+        },
+        Cubic: {
+            easeIn: function (t, b, c, d) {
+                return c * (t /= d) * t * t + b;
+            },
+            easeOut: function (t, b, c, d) {
+                return c * ((t = t / d - 1) * t * t + 1) + b;
+            },
+            easeInOut: function (t, b, c, d) {
+                if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;
+                return c / 2 * ((t -= 2) * t * t + 2) + b;
+            }
+        },
+        Quart: {
+            easeIn: function (t, b, c, d) {
+                return c * (t /= d) * t * t * t + b;
+            },
+            easeOut: function (t, b, c, d) {
+                return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+            },
+            easeInOut: function (t, b, c, d) {
+                if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b;
+                return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
+            }
+        },
+        Quint: {
+            easeIn: function (t, b, c, d) {
+                return c * (t /= d) * t * t * t * t + b;
+            },
+            easeOut: function (t, b, c, d) {
+                return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
+            },
+            easeInOut: function (t, b, c, d) {
+                if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;
+                return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
+            }
+        },
+        Sine: {
+            easeIn: function (t, b, c, d) {
+                return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;
+            },
+            easeOut: function (t, b, c, d) {
+                return c * Math.sin(t / d * (Math.PI / 2)) + b;
+            },
+            easeInOut: function (t, b, c, d) {
+                return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;
+            }
+        },
+        Expo: {
+            easeIn: function (t, b, c, d) {
+                return (t == 0) ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
+            },
+            easeOut: function (t, b, c, d) {
+                return (t == d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
+            },
+            easeInOut: function (t, b, c, d) {
+                if (t == 0) return b;
+                if (t == d) return b + c;
+                if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
+                return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
+            }
+        },
+        Circ: {
+            easeIn: function (t, b, c, d) {
+                return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
+            },
+            easeOut: function (t, b, c, d) {
+                return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;
+            },
+            easeInOut: function (t, b, c, d) {
+                if ((t /= d / 2) < 1) return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;
+                return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
+            }
+        },
+        Elastic: {
+            easeIn: function (t, b, c, d, a, p) {
+                if (t == 0) return b;
+                if ((t /= d) == 1) return b + c;
+                if (!p) p = d * .3;
+                if (!a || a < Math.abs(c)) {
+                    a = c;
+                    var s = p / 4;
+                }
+                else var s = p / (2 * Math.PI) * Math.asin(c / a);
+                return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+            },
+            easeOut: function (t, b, c, d, a, p) {
+                if (t == 0) return b;
+                if ((t /= d) == 1) return b + c;
+                if (!p) p = d * .3;
+                if (!a || a < Math.abs(c)) {
+                    a = c;
+                    var s = p / 4;
+                }
+                else var s = p / (2 * Math.PI) * Math.asin(c / a);
+                return (a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b);
+            },
+            easeInOut: function (t, b, c, d, a, p) {
+                if (t == 0) return b;
+                if ((t /= d / 2) == 2) return b + c;
+                if (!p) p = d * (.3 * 1.5);
+                if (!a || a < Math.abs(c)) {
+                    a = c;
+                    var s = p / 4;
+                }
+                else var s = p / (2 * Math.PI) * Math.asin(c / a);
+                if (t < 1) return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+                return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * .5 + c + b;
+            }
+        },
+        Back: {
+            easeIn: function (t, b, c, d, s) {
+                if (s == undefined) s = 1.70158;
+                return c * (t /= d) * t * ((s + 1) * t - s) + b;
+            },
+            easeOut: function (t, b, c, d, s) {
+                if (s == undefined) s = 1.70158;
+                return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
+            },
+            easeInOut: function (t, b, c, d, s) {
+                if (s == undefined) s = 1.70158;
+                if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;
+                return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
+            }
+        },
+        Bounce: {
+            easeIn: function (t, b, c, d) {
+                return c - Tween.Bounce.easeOut(d - t, 0, c, d) + b;
+            },
+            easeOut: function (t, b, c, d) {
+                if ((t /= d) < (1 / 2.75)) {
+                    return c * (7.5625 * t * t) + b;
+                } else if (t < (2 / 2.75)) {
+                    return c * (7.5625 * (t -= (1.5 / 2.75)) * t + .75) + b;
+                } else if (t < (2.5 / 2.75)) {
+                    return c * (7.5625 * (t -= (2.25 / 2.75)) * t + .9375) + b;
+                } else {
+                    return c * (7.5625 * (t -= (2.625 / 2.75)) * t + .984375) + b;
+                }
+            },
+            easeInOut: function (t, b, c, d) {
+                if (t < d / 2) return Tween.Bounce.easeIn(t * 2, 0, c, d) * .5 + b;
+                else return Tween.Bounce.easeOut(t * 2 - d, 0, c, d) * .5 + c * .5 + b;
+            }
+        }
+    }
+    window.onload = function () {
+
+        var userName = document.getElementById("userName");
+
+        var content = document.getElementById("content");
+
+        var submitBtn = document.getElementById("submit");
+
+        var ul = document.getElementById("comment_ul");
+
+        var timer = null;
+
+        submitBtn.onclick = function () {
+
+            var name = userName.value;
+            var comment_P = content.value;
+
+
+            if (name == "" || comment_P == "") {
+                alert("留言者的姓名和留言内容不能为空！");
+                return;
+            }
+
+
+            userName.value = "";
+            content.value = "";
+
+
+            var li = document.createElement('li');
+
+
+            li.innerHTML = '<h3>' + name + '</h3><p>' + comment_P + '<a href="###">删除</a></p>';
+            if (ul.children.length > 0) {
+                ul.insertBefore(li, ul.children[0]);
+            } else {
+                ul.appendChild(li);
+            }
+
+
+            var start = 0;
+            var end = li.offsetHeight;
+
+            li.style.height = 0;
+            var change = end - start;
+            var t = 0;
+            var endT = 20;
+
+            clearInterval(timer);
+            timer = setInterval(function () {
+                t++;
+                if (t == endT) {
+                    clearInterval(timer);
+                }
+
+                li.style.height = Tween.Bounce.easeOut(t, start, change, endT) + 'px';
+            }, 30);
+
+
+            var deleteAObj = li.getElementsByTagName('a')[0];
+
+            deleteAObj.onclick = function () {
+
+                var deleteLi = this.parentNode.parentNode;
+                var start = li.offsetHeight;
+                var end = 0;
+                var change = end - start;
+                var t = 0;
+                var endT = 20;
+                clearInterval(timer);
+                timer = setInterval(function () {
+                    t++;
+                    if (t == endT) {
+
+                        ul.removeChild(deleteLi);
+                        clearInterval(timer);
+                    }
+                    li.style.height = Tween.Quart.easeIn(t, start, change, endT) + 'px';
+                }, 30);
+
+            }
+
+
+        }
+    }
+
+</script>
+<!--点赞-->
+<script>
+    /* @author:Romey
+     * 动态点赞
+     * 此效果包含css3，部分浏览器不兼容（如：IE10以下的版本）
+     */
+    $(function(){
+        $("#praise").click(function(){
+            var praise_img = $("#praise-img");
+            var text_box = $("#add-num");
+            var praise_txt = $("#praise-txt");
+            var num=parseInt(praise_txt.text());
+            if(praise_img.attr("src") == ("images/yizan.png")){
+                $(this).html("<img src='images/zan.png' id='praise-img' class='animation' />");
+                praise_txt.removeClass("hover");
+                text_box.show().html("<em class='add-animation'>-1</em>");
+                $(".add-animation").removeClass("hover");
+                num -=1;
+                praise_txt.text(num)
+            }else{
+                $(this).html("<img src='images/yizan.png' id='praise-img' class='animation' />");
+                praise_txt.addClass("hover");
+                text_box.show().html("<em class='add-animation'>+1</em>");
+                $(".add-animation").addClass("hover");
+                num +=1;
+                praise_txt.text(num)
+            }
+        });
+    })
+</script>

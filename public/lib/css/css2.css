@@ -1,0 +1,256 @@
+
+#title h1{
+    margin: 0.5em auto;
+}
+
+#discuss{
+    width: 60%;
+    height:230px;
+    /*background: linear-gradient(#aae7ff,#72b0e6);*/
+    margin: 0 auto;
+    padding-top: em;
+}
+
+#ul1{
+    
+    border:0px solid #000000;
+    margin:0px auto;
+    overflow:hidden;
+}
+
+#ul1 li {
+    border-bottom:0px #000000 dashed;
+    font-family: 'Microsoft Yahei';
+    list-style:none;
+    overflow:hidden;
+    filter:alpha(opacity:0);
+    opacity: 0;
+    background-color:#E6E6FA;
+    padding-top: 10px;
+    padding-left: 10px;
+    text-align: left;
+
+}
+
+#txt1{
+    width: 650px;
+    outline: none;
+    font-size: 18px;
+    background-color: #D3D3D3;
+    color: #000000;
+    border:1px solid #A9A9A9;/*#d9eaf4*/
+}
+
+#output{
+    width: auto;
+    margin: 0 auto;
+    text-align: center;
+    
+}
+
+#btn1{
+    cursor: pointer;
+    width: 200px;
+    height: 44px;
+    margin-top: 25px;
+    padding: 0;
+    background:#6495ED;
+    border-radius: 6px;
+    border: 1px solid #6495ED;
+    box-shadow:
+    0 15px 30px 0 rgba(255,255,255,.25) inset,
+    0 2px 7px 0 rgba(0,0,0,.2);
+    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+    -moz-border-radius: 6px;
+    -moz-border: 1px solid #68a0d6;
+    -moz-box-shadow:
+    0 15px 30px 0 rgba(255,255,255,.25) inset,
+    0 2px 7px 0 rgba(0,0,0,.2);
+    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    -moz-text-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+
+/*分享*---/
+
+/*隐藏*/
+#div1{
+       width:100px;
+       height:160px; 
+       position:absolute;
+       left:-100px;
+       border-radius: 0px 5px 5px 0px;
+       background-color:#666666;
+       bottom:60%;
+
+
+    }
+/*显示*/
+#div1 span{position:absolute; 
+     width:30px; height:75px; 
+     line-height:20px;
+     right:-30px;
+     top:50px;
+     border-radius: 0px 10px 10px 0px;
+     background-color: #373a3c;
+
+     
+     }
+
+.bt{
+    position:absolute; 
+    font-size: 15px;
+    text-align: center;
+    right: -40px;
+    top: 90px;
+    color: white;
+    letter-spacing:5px;
+    padding-top: 10px;
+    line-height: 20px;
+    font-family: 'Microsoft Yahei';
+} 
+.simg{
+    padding-top:10px;
+    padding-left:10px
+}
+
+/*留言*/
+            #wrap{
+                width:100%;
+                background: #F4F4F4;
+                margin: 20px auto;
+                padding: 30px;
+                text-align: left;
+            }
+            li{
+                list-style: none;
+            }
+
+            #content_view{
+                padding: 10px;
+
+            }
+            #content_view li{
+                padding: 10px 0;
+                line-height: 22px;
+            }
+
+            /*昵称 wenbenkuang*/
+            #content_view #userName {
+
+                position: relative;
+                left:60px;
+                top: -25px;
+                height: 30px;
+                width: 130px;
+                font-size: 16px;
+                vertical-align: top;
+
+                display: block; 
+                line-height: 1.428571429; 
+                color: #555555; 
+                vertical-align: middle; 
+                background-color: #ffffff; 
+                border: 1px solid #cccccc; 
+                border-radius: 4px; 
+                -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); 
+                box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); 
+                -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; 
+                transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; 
+            }
+            /*文本*/
+            #content_view #content{
+                position: relative;
+                left:60px;
+                top: -25px;
+                width: 900px;
+                height: 200px;
+                font-size: 16px;
+                vertical-align: top;
+                display: block; 
+                line-height: 1.428571429; 
+                color: #555555; 
+                vertical-align: middle; 
+                background-color: #ffffff; 
+                border: 1px solid #cccccc; 
+                border-radius: 4px; 
+                -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); 
+                box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); 
+                -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; 
+                transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; 
+            }
+
+            /*anniu*/
+            #content_view #submit {
+                font-family: 'Microsoft Yahei';
+                width: 97px;
+                height: 30px;
+                border:1px solid gray;
+                background: white;
+                color: white;
+                position: relative;
+                font-size: 16px;
+                left: 60px;
+                background-color:#FF3300;
+                text-align: center;
+                border-radius: 6px;
+                border: 1px solid #FF3300;
+                letter-spacing: 11px;
+            }
+            #comment_list{
+                /*overflow: hidden;*/
+                 
+            }
+            #comment_list h2{
+                margin-top: 10px;
+
+            }
+            /*隐藏昵称*/
+            #comment_list h3{
+            
+                padding: 10px;
+                background:#FFFFCC;
+                font-size: 18px;
+                position: relative;
+                left:20px;
+                font-weight: 90;
+                font-family: 'Microsoft Yahei';
+                border-radius: 4px; 
+            }
+
+            /*内容*/
+            #comment_list p{
+                padding:8px;
+                font-size: 16px;
+                text-indent: 2em;
+                position: relative;
+                left:20px;
+                font-family: 'Microsoft Yahei';
+                
+            }
+            #comment_list a{
+                text-decoration: none;
+                float: right;
+                top:20px;
+            }
+
+            #xs{
+                font-size:15px;
+                position: relative;
+                text-align: center;
+                font-family: 'Microsoft Yahei';
+                letter-spacing: 12px;
+
+            }
+            #xs1{
+                font-size:16px;
+                position: relative;
+                font-family: 'Microsoft Yahei';
+                letter-spacing: 15px;
+
+            }
+textarea:-moz-placeholder { color: #fff; }
+textarea:-ms-input-placeholder { color: #fff; }
+textarea::-webkit-input-placeholder { color: #fff; }

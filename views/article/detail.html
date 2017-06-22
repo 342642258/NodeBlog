@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>博客</title>
+
+    <link href="/lib/css/bootstrap.css" rel="stylesheet">
+
+    <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/lib/css/bootstrap-social.css">
+    <link rel="stylesheet" href="/lib/css/magnific-popup.css">
+    <link rel="stylesheet" href="/lib/css/zong.css">
+    <link rel="stylesheet" href="/lib/css/css2.css">
+    <script src="/js/move.js"></script>
+    <script src="/js/discussjs.js"></script>
+    <script src="/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="/js/edit.js" type="text/javascript"></script>
+    <link href="/lib/css/bootstrap.css" rel="stylesheet">
+</head>
+<body style=" background: url(../../images/pbg.jpg);border:0;height:100%;width:100%;">
+<div class="container-fluid">
+    <div class="row">
+        <div class="tm-navbar-container tm-navbar-container-dark">
+            <nav class="navbar navbar-full navbar-fixed-top bg-inverse">
+                <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#tmNavbar">
+                    &#9776;
+                </button>
+                <div class="collapse navbar-toggleable-sm" id="tmNavbar">
+                    <ul class="nav navbar-nav" style="float:left;">
+                        <li class="nav-item" >
+                            <a href="/" class="nav-link external" >返回</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="panel panel-success" style="padding-top:75px;background: url(../../images/pbg.jpg);border:0;height:100%;width:100%;">
+    <div class="panel-heading" style="background-color:#ededed;text-align:center;margin:auto;font-size:30px;"><%=article.title%></div>
+    <div class="panel-body" style="">
+        <p  style="margin:auto;width:50%;font-size:15px;color:#303030;"><%=article.content%></p>
+        <a href="/articles/detail/<%=article._id%>">
+            <p style="text-align:center;margin:auto;margin-top:12px;">
+                <img src="<%=article.img%>" alt="Image" class="img-fluid tm-news-item-img" ></p>
+        </a>
+
+        <%
+        if(user.username == 666){
+        %>
+        <div class=""  style="margin:auto;text-align:center;width:auto;margin-left:-45%;margin-top:2%;">
+            <a class="" href="/articles/update/<%=article._id%>">修改</a>
+            <a class="" href="/articles/delete/<%=article._id%>">删除</a>
+        </div>
+        <%
+        }else{
+        %>
+
+        <%
+        }
+        %>
+        <div class="panel panel-default" style="margin:auto;margin-top:40px;text-align:left;width: 50%">
+            <div class="panel-heading">
+                <h5>评论列表</h5>
+            </div>
+            <div class="panel-body">
+                <%
+                //迭代文章的评论数组
+                if(article.comments)
+                article.comments.forEach(function(comment){%>
+                <div class="media">
+                    <div class="media-body">
+                        <p><%-comment.content%></p>
+                        <p>发表时间:<%=comment.createAt.toLocaleString()%></p>
+                    </div>
+                </div>
+                <%});
+                %>
+            </div>
+        </div>
+    </div>
+
+    <div class=""  style="margin: auto;text-align: center;width:49%">
+        <form action="/articles/comment" method="post">
+            <input  type="hidden" name="article_id" value="<%=article._id%>">
+            <div class="form-group">
+                <textarea class="form-control" name="content" id="content" cols="30" rows="2"></textarea>
+            </div>
+            <input class="btn btn-primary" type="submit" value="发表评论">
+            <br>
+        </form>
+
+    </div>
+</div>
+</div>
+</div>
+</body>
+<style >
+    .body{
+
+    }
+</style>
+</html>
